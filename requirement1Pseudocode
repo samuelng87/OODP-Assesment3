@@ -1,7 +1,26 @@
-START  
+Start
+  
+ perform printStars()
  
+ print(space line x3
+    Welcome Message 
+	space line x2) 
 
- 
+ perform printStarts()
 
+ print(space line x2 
+  Developed by, Names & Student IDs
+	Space line x1 
+	 Assesment name 
+	  Space line x1
+	   date 
+	    space line x3)
 
-END
+ perform printStarts()
+
+Stop
+
+printStars()
+ loop from 0 to 100 
+  print(*)
+   end loop
