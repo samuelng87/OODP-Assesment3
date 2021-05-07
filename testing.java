@@ -85,6 +85,7 @@ public static double handleMenu(int userOption) {
 		System.out.println("Enter the approximate Kms");
 		kms=sc.nextDouble();
 	}
+	break;
 	case 2: {
 		
 		charges= kms*1.15;
