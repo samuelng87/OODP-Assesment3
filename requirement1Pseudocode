@@ -6,12 +6,12 @@ Start
     Welcome Message 
 	space line x2) 
 
- perform printStarts()
+ perform printStars()
 
  print(space line x2 
   Developed by, Names & Student IDs
 	Space line x1 
-	 Assesment name 
+	 Assessment name 
 	  Space line x1
 	   date 
 	    space line x3)
