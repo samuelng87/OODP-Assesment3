@@ -75,6 +75,9 @@ public static int printMenu() {
 
 public static double handleMenu(int userOption) {
 	Scanner sc=new Scanner(System.in);
+	int date;
+	int month;
+	double time;
 	double charges=0;
 	double kms=1;
 	switch (userOption) {
@@ -84,34 +87,58 @@ public static double handleMenu(int userOption) {
 		String name=sc.next();
 		System.out.println("Enter the approximate Kms");
 		kms=sc.nextDouble();
+		System.out.println("Month of travel");
+		month = sc.nextInt();
+		
+		while(month > 12 || month < 1) {
+			System.out.println("Error!! Please enter the correct month");
+			month = sc.nextInt();
+
+		}
+		
+		
+		
+		System.out.println("On which date of this month, you would like to travel?");
+		date = sc.nextInt();
+		
+		
+		while(date < 1 || date > 31) {
+			System.out.println("Error!! Please enter the correct Date");
+			month = sc.nextInt();
+
+		}
+		
+		
+		System.out.println("Now enter the time of trave; using 24 hour clock just like 9.00 for 9am, 13.00 for 1pm, 14.30 for 2:30pm");
+		time = sc.nextDouble();
 	}
-	break;
+	
 	case 2: {
 		
 		charges= kms*1.15;
 		System.out.println("Your UBER fare is A$" + charges);
 	}
-	break;
+
 	case 3: {
 		
 		charges= kms*1.08;
 		System.out.println("Your DIDI fare is A$" + charges);
 	}
-	break;
+
 	case 4: {
 		
 		charges= kms*1.35;
 		System.out.println("Your OLA fare is A$" + charges);
 	}
-	break;
+
 	case 5: {
 		
 		System.out.println("Report");
 	}
-	break;
+
 	case 6: {
 		
-		System.out.println("Thank you for using the system and good bye>>>>>>");
+		System.out.println("Thank you for using our applcation and good bye>>>>>>");
 	}
 	}
 	
