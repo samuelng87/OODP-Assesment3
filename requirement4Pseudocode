@@ -1,0 +1,132 @@
+// Main logic in requirement 4.
+calculateAndDisplayChargesUnderCompany1(string userName
+                                      , num kilometers
+                                      , num month
+                                      , num date
+                                      , date time)
+  Declaration
+    string dayOfWeekString
+    string monthString
+    num baseCharges
+    num distanceCharges
+    num peaktimeSurcharges
+    num weekendSurcharges
+    num finalCharges
+
+  // Initialising.
+  getDayOfWeekString = perform getDayOfWeekString(month, date)
+  monthString = perform getMonthString(month)
+  baseCharges = 5.50
+  distanceCharges = perform calculateDistanceCharges(killometers)
+  peaktimeSurcharges = perform calculatePeakTimeSurcharges(time)
+  weekendSurcharges = perform calculateWeekendSurcharges(month, date)
+  finalCharges = baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges
+
+  // Display travel details.
+  perform printStars()
+  print "Your travel details:- Day of the Week on " + date + " of the month - " + monthString + " is " + dayOfWeekString
+  if weekendSurcharges == 0 then
+    print "Your day of travel does not falls under weekend category"
+  else
+    print "Your day of travel falls under weekend category"
+  endif
+  print ""
+  if peaktimeSurcharges == 0 then
+    print "Time does not falls in peaktime category"
+  else
+    print "Time falls in peaktime category"
+  endif
+  print ""
+  print "So charges will be applied accordingly"
+  print ""
+  print "The final charges under company 1 is: " + finalCharges
+  perform printStars()
+
+// Calclulate distance charges by killometers.
+calculateDistanceCharges(kilometers)
+  return kilometers * 0.75
+
+// Calclulate peak time surcharges by time.
+calculatePeakTimeSurcharges(date time)
+  if (7.00 <= time AND time <= 9.00) OR (16.00 <= time AND time <= 18.00) then
+    return 2.50
+  else
+    return 0
+  endif
+
+// Calclulate weekend surcharges by month and date.
+calculateWeekendSurcharges(num month, num date)
+  Declaration
+    num saturdayValue
+    num sundayValue
+    num dayOfWeek
+
+  saturdayValue = 6
+  sundayValue = 7
+  // DayOfWeek.getValue is a function in Java.
+  dayOfWeek = perform DayOfWeek.getValue(month, date)
+
+  if dayOfWeek == saturdayValue OR dayOfWeek == sundayValue then
+    return 3.00
+  else
+    return 0
+  end if
+
+// Print stars.
+printStars()
+ loop from 0 to 100 
+  print(*)
+   end loop
+
+// Getting day of week string by month number and date number.
+getDayOfWeekString(num month, num date)
+  Declaration
+    num dayOfWeek
+
+  // Initialising.
+  // DayOfWeek.getValue is a function in Java.
+  dayOfWeek = DayOfWeek.getValue(month, date)
+
+  case dayOfWeek
+    case 1
+      return "MONDAY"
+    case 2
+      return "TUESDAY"
+    case 3
+      return "WEDNESDAY"
+    case 4
+      return "THURSDAY"
+    case 5
+      return "FRIDAY"
+    case 6
+      return "SATURDAY"
+    case 7
+      return "SUNDAY"
+
+// Getting month string by month number.
+getMonthString(num month)
+  case month
+    case 1
+      return "JANUARY"
+    case 2
+      return "FEBRUARY"
+    case 3
+      return "MARCH"
+    case 4
+      return "APRIL"
+    case 5
+      return "MAY"
+    case 6
+      return "JUN"
+    case 7
+      return "JULY"
+    case 8
+      return "AUGUST"
+    case 9
+      return "SEPTEMBER"
+    case 10
+      return "OCTOBER"
+    case 11
+      return "NOVEMBER"
+    case 12
+      return "DECEMBER"
