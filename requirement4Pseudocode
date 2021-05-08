@@ -1,9 +1,8 @@
 // Main logic in requirement 4.
-calculateAndDisplayChargesUnderCompany1(string userName
-                                      , num kilometers
+calculateAndDisplayChargesUnderCompany1(num kilometers
                                       , num month
                                       , num date
-                                      , date time)
+                                      , time time)
   Declaration
     string dayOfWeekString
     string monthString
@@ -14,27 +13,35 @@ calculateAndDisplayChargesUnderCompany1(string userName
     num finalCharges
 
   // Initialising.
-  getDayOfWeekString = perform getDayOfWeekString(month, date)
+  dayOfWeekString = perform getDayOfWeekString(month, date)
   monthString = perform getMonthString(month)
   baseCharges = 5.50
-  distanceCharges = perform calculateDistanceCharges(killometers)
-  peaktimeSurcharges = perform calculatePeakTimeSurcharges(time)
-  weekendSurcharges = perform calculateWeekendSurcharges(month, date)
+  distanceCharges = killometers * 0.75
+  if isPeakTime(time) then
+    peaktimeSurcharges = 2.50
+  else
+    peaktimeSurcharges = 0
+  endif
+  if isWeekend(month, date) then
+    weekendSurcharges = 3.00
+  else
+    weekendSurcharges = 0
+  endif
   finalCharges = baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges
 
   // Display travel details.
   perform printStars()
   print "Your travel details:- Day of the Week on " + date + " of the month - " + monthString + " is " + dayOfWeekString
-  if weekendSurcharges == 0 then
-    print "Your day of travel does not falls under weekend category"
-  else
+  if isWeekend(month, date) then
     print "Your day of travel falls under weekend category"
+  else
+    print "Your day of travel does not falls under weekend category"
   endif
   print ""
-  if peaktimeSurcharges == 0 then
-    print "Time does not falls in peaktime category"
-  else
+  if isPeakTime(time) then
     print "Time falls in peaktime category"
+  else
+    print "Time does not falls in peaktime category"
   endif
   print ""
   print "So charges will be applied accordingly"
@@ -42,35 +49,26 @@ calculateAndDisplayChargesUnderCompany1(string userName
   print "The final charges under company 1 is: " + finalCharges
   perform printStars()
 
-// Calclulate distance charges by killometers.
-calculateDistanceCharges(kilometers)
-  return kilometers * 0.75
+// Check if time is peak time.
+isPeakTime(date time)
+  return (7.00 <= time AND time <= 9.00) OR (16.00 <= time AND time <= 18.00)
 
-// Calclulate peak time surcharges by time.
-calculatePeakTimeSurcharges(date time)
-  if (7.00 <= time AND time <= 9.00) OR (16.00 <= time AND time <= 18.00) then
-    return 2.50
-  else
-    return 0
-  endif
-
-// Calclulate weekend surcharges by month and date.
-calculateWeekendSurcharges(num month, num date)
+// Check if day of week by month and date is weekend.
+isWeekend(num month, num date)
   Declaration
     num saturdayValue
     num sundayValue
     num dayOfWeek
 
+  // Initialising.
   saturdayValue = 6
   sundayValue = 7
-  // DayOfWeek.getValue is a function in Java.
-  dayOfWeek = perform DayOfWeek.getValue(month, date)
+  // LocalDate.of().DayOfWeek.getValue() are functions in Java.
+  dayOfWeek = LocalDate.of(2021, month, date)
+                       .getDayOfWeek()
+                       .getValue();
 
-  if dayOfWeek == saturdayValue OR dayOfWeek == sundayValue then
-    return 3.00
-  else
-    return 0
-  end if
+  return dayOfWeek == saturdayValue OR dayOfWeek == sundayValue
 
 // Print stars.
 printStars()
