@@ -104,7 +104,7 @@ public static double handleMenu(int userOption) {
 		
 		while(date < 1 || date > 31) {
 			System.out.println("Error!! Please enter the correct Date");
-			month = sc.nextInt();
+			date = sc.nextInt();
 
 		}
 		
