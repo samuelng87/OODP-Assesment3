@@ -8,15 +8,13 @@ public class Assesment3 {
 
 	
 	public static void main(String[] args) {
+	
 		nameEntry();
 		printStars();
 		welcomeMessage();		
 		printStars();
-		deveoperDetails();
-		printStars();
 		int option = printMenu();
 		handleMenu(option);
-                
                 
 		
 	}
@@ -33,25 +31,17 @@ public class Assesment3 {
 	
 	
 public static void welcomeMessage() {
-
-	System.out.println("\n\n\n"
-			+ "WELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM"
-			+ "\n\n");
-	
-	
-}
-
-
-public static void deveoperDetails() {
 	Scanner sc=new Scanner(System.in);
 	Date date=java.util.Calendar.getInstance().getTime(); 
+	System.out.println("\n\nWELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM");
+	System.out.println("Developed by Koki, Ashmit, Saroj and Samuel Student IDs add your id here K210032");
+	System.out.println("OODP101 Object Oriented Design and Programming");
+	System.out.println(date + "\n");		
+			
 
-	System.out.print("\n\nDeveloped by Koki, Ashmit, Saroj and Samuel Student IDs add your id here K210032 \n"
-			+ "OODP101 Object Oriented Design and Programming\n"
-			+ date
-			+ "\n\n\n");
-	
 }
+
+
 
 
 public static void printStars() {
@@ -82,6 +72,7 @@ public static int printMenu() {
 	System.out.println("3. Display Charges under OLA");
 	System.out.println("4. Show Report");
 	System.out.println("5. Exit");
+	printStars(); 
 	userSelection=sc.nextInt();
 	
 	
