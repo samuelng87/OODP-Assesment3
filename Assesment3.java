@@ -1,53 +1,58 @@
+package assesment3;
 
 import java.util.Scanner;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
+
 public class Assesment3 {
-   
-    
 
-
+	
 	public static void main(String[] args) {
-		
-		
-		Scanner sc=new Scanner(System.in);
-		Date date=java.util.Calendar.getInstance().getTime();  
-
-
-		
-		
-		
-		
+		nameEntry();
 		printStars();
-
-
-		System.out.println("\n\n\n"
-				+ "WELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM"
-				+ "\n\n");
-			
+		welcomeMessage();		
 		printStars();
-
-
-		System.out.print("\n\nDeveloped by Koki, Ashmit, Saroj and Samuel Student IDs add your id here K210032 \n"
-			+ "OODP101 Object Oriented Design and Programming\n"
-			+ date
-			+ "\n\n\n");
-
-
+		deveoperDetails();
 		printStars();
-		
-                
-		System.out.println("\n\nEnter your name:");
-                String name = sc.nextLine();
-                
-               
 		int option = printMenu();
-                
 		handleMenu(option);
                 
                 
 		
 	}
+	
+
+	public static void nameEntry() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter your name");
+		String name=sc.next();
+		
+		
+	}	
+    
+	
+	
+public static void welcomeMessage() {
+
+	System.out.println("\n\n\n"
+			+ "WELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM"
+			+ "\n\n");
+	
+	
+}
+
+
+public static void deveoperDetails() {
+	Scanner sc=new Scanner(System.in);
+	Date date=java.util.Calendar.getInstance().getTime(); 
+
+	System.out.print("\n\nDeveloped by Koki, Ashmit, Saroj and Samuel Student IDs add your id here K210032 \n"
+			+ "OODP101 Object Oriented Design and Programming\n"
+			+ date
+			+ "\n\n\n");
+	
+}
+
 
 public static void printStars() {
 
@@ -81,7 +86,7 @@ public static int printMenu() {
 	
 	
 		while(userSelection<1 || userSelection>5) {
-			System.out.println("Error! ::::::::: Please Enter number 1 to 6 only");
+			System.out.println("Error! ::::::::: Please Enter number 1 to 5 only");
 			printMenu();
 				}
 			return userSelection;
@@ -137,9 +142,3 @@ public static int printMenu() {
 
 
 
-
-
-
-
-
-	
