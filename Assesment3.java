@@ -1,5 +1,4 @@
 package assesment3;
-
 import java.util.Scanner;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
