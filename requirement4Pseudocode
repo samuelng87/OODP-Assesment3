@@ -1,33 +1,45 @@
-// Main logic in requirement 4.
-calculateAndDisplayChargesUnderCompany1(num kilometers
-                                      , num month
-                                      , num date
-                                      , time time)
+// Main logic in requirement 4. (calculate)
+calculateCharges(num kilometers
+               , num month
+               , num date
+               , time time)
   Declaration
-    string dayOfWeekString
-    string monthString
     num baseCharges
     num distanceCharges
     num peaktimeSurcharges
     num weekendSurcharges
-    num finalCharges
 
   // Initialising.
-  dayOfWeekString = perform getDayOfWeekString(month, date)
-  monthString = perform getMonthString(month)
   baseCharges = 5.50
   distanceCharges = killometers * 0.75
+
   if isPeakTime(time) then
     peaktimeSurcharges = 2.50
   else
     peaktimeSurcharges = 0
   endif
+
   if isWeekend(month, date) then
     weekendSurcharges = 3.00
   else
     weekendSurcharges = 0
   endif
-  finalCharges = baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges
+
+  return baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges
+
+// Main logic in requirement 4. (display charges)
+displayTravelDetails(string companyName
+                   , num cost
+                   , num month
+                   , num date
+                   , time time)
+  Declaration
+    string dayOfWeekString
+    string monthString
+
+  // Initialising.
+  dayOfWeekString = perform getDayOfWeekString(month, date)
+  monthString = perform getMonthString(month)
 
   // Display travel details.
   perform printStars()
@@ -37,20 +49,20 @@ calculateAndDisplayChargesUnderCompany1(num kilometers
   else
     print "Your day of travel does not falls under weekend category"
   endif
-  print ""
+  print space line x1
   if isPeakTime(time) then
     print "Time falls in peaktime category"
   else
     print "Time does not falls in peaktime category"
   endif
-  print ""
+  print space line x1
   print "So charges will be applied accordingly"
-  print ""
-  print "The final charges under company 1 is: " + finalCharges
+  print space line x1
+  print "The final charges under " + companyName + " is: " + cost
   perform printStars()
 
 // Check if time is peak time.
-isPeakTime(date time)
+isPeakTime(time time)
   return (7.00 <= time AND time <= 9.00) OR (16.00 <= time AND time <= 18.00)
 
 // Check if day of week by month and date is weekend.
