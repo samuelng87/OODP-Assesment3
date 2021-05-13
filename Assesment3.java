@@ -1,4 +1,4 @@
-//package assesment3;
+package assesment3;
 
 import java.util.Scanner;
 import java.text.DateFormatSymbols;
