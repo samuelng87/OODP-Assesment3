@@ -1,52 +1,28 @@
 
 import java.util.Scanner;
-import java.text.SimpleDateFormat;  
-import java.util.Date;  
-public class Assesment3 {
-   
-    
+import java.text.SimpleDateFormat;
+import java.util.Date;
+public class testing {
 
 
 	public static void main(String[] args) {
-		
-		
+
+
 		Scanner sc=new Scanner(System.in);
-		Date date=java.util.Calendar.getInstance().getTime();  
 
 
-		
-		
-		
-		
-		printStars();
 
 
-		System.out.println("\n\n\n"
-				+ "WELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM"
-				+ "\n\n");
-			
-		printStars();
 
-
-		System.out.print("\n\nDeveloped by Koki, Ashmit, Saroj and Samuel Student IDs add your id here K210032 \n"
-			+ "OODP101 Object Oriented Design and Programming\n"
-			+ date
-			+ "\n\n\n");
 
 
 		printStars();
-		
-                
-		System.out.println("\n\nEnter your name:");
-                String name = sc.nextLine();
-                
-               
+		welcome();
+                studentName();
+		printStars();
 		int option = printMenu();
-                
 		handleMenu(option);
-                
-                
-		
+
 	}
 
 public static void printStars() {
@@ -54,92 +30,157 @@ public static void printStars() {
 	for(int i=0;i<100;i++) {
 	 System.out.print("*");
 			}
-		
+
 }
 
-public static int kiloMeters(){
-    Scanner sc = new Scanner(System.in);
-    System.out.println("\n\nEnter the distance to travel:");
-    int kms = sc.nextInt();
-    return kms;
-}
-	
 
-public static int printMenu() { 
-	
-	
+public static int printMenu() {
+
+
 	int userSelection;
 	Scanner sc= new Scanner(System.in);
-	
-	
-	System.out.println("\n\n1. Display charges under UBER");
-	System.out.println("2. Display charges under DIDI");
-	System.out.println("3. Display Charges under OLA");
-	System.out.println("4. Show Report");
-	System.out.println("5. Exit");
+
+	System.out.println("\n\n1. Enter usage details");
+	System.out.println("2. Display charges under UBER");
+	System.out.println("3. Display charges under DIDI");
+	System.out.println("4. Display Charges under OLA");
+	System.out.println("5. Show Report");
+	System.out.println("6. Exit");
+        System.out.println("Choose the option:");
 	userSelection=sc.nextInt();
-	
-	
-		while(userSelection<1 || userSelection>5) {
-			System.out.println("Error! ::::::::: Please Enter number 1 to 6 only");
+        printStars();
+
+
+		while(userSelection<1||userSelection>6) {
+			System.out.println("\nError! ::::::::: Please Enter number 1 to 6 only");
 			printMenu();
 				}
 			return userSelection;
-                        
 }
 
-    
-    public static double handleMenu(int userOption){
-        Scanner sc=new Scanner(System.in);
-        double kms=kiloMeters();
-        double charges1=1.15*kms ;
-        double charges2=1.08*kms ;
-        double charges3=1.35*kms ; 
-    switch(userOption){
-	case 1: {
-		System.out.println("Your UBER fare is A$" + charges1);
-                System.out.println("Thank you for using the system and good bye>>>>>>");
-                break;
+
+
+public static void handleMenu(int userOption) {
+	Scanner sc=new Scanner(System.in);
+        String name = "";
+        double kms;
+        int month;
+	int day;
+
+	double time;
+
+
+	switch (userOption) {
+	case 1:
+	{
+                name = name();
+		kms = kiloMeters();
+		month = Month();
+		day = Day();
+		time = Time();
+                int option = printMenu();
+		handleMenu(option);
 	}
-	
+
 	case 2: {
-		System.out.println("Your DIDI fare is A$" + charges2);
-                System.out.println("Thank you for using the system and good bye>>>>>>");
-                break;
+
+
+
+
+
 	}
-	
+
 	case 3: {
-		System.out.println("Your OLA fare is A$" + charges3);
-                System.out.println("Thank you for using the system and good bye>>>>>>");
-                break;
+
+
 	}
-	
+
 	case 4: {
-		
-		System.out.println("Report");
-                System.out.println("\n\nName:" );
-                System.out.println("Total fare for UBER is A$" + charges1);
-                System.out.println("Total fare for DIDI is A$" + charges2);
-                System.out.println("Total fare for OLA is A$" + charges3);
-                System.out.println("Thank you for using the system and good bye>>>>>>");
+
+
 	}
-	break;
+
 	case 5: {
-		
-		System.out.println("Thank you for using the system and good bye>>>>>>");
+
+
 	}
-	}return charges1;
+
+	case 6: {
+
+		System.out.println("\nThank you for using our applcation and good bye>>>>>>");
+	}
+
+	}
+
+
+
 }
 
-    
-}	
-	
+
+private static void welcome(){
+   System.out.println("\n\n\n"
+				+ "WELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM"
+				+ "\n\n");
+}
+
+private static void studentName(){
+    Date date=java.util.Calendar.getInstance().getTime();
+    System.out.print("\n\nDeveloped by Koki, Ashmit, Saroj and Samuel Student IDs add your id here K210032 \n"
+			+ "OODP101 Object Oriented Design and Programming\n"
+			+ date
+			+ "\n\n\n");
+}
+
+public static String name(){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("\nEnter your name:");
+    String name = sc.nextLine();
+    return name;
+}
+
+public static double kiloMeters(){
+    double kms;
+    Scanner sc = new Scanner(System.in);
+    System.out.println("\nEnter the approximate Kms");
+		kms=sc.nextDouble();
+    return kms;
+}
+
+public static int Month(){
+    int month;
+    Scanner sc = new Scanner(System.in);
+    System.out.println("\nEnter the month of travel:");
+    month = sc.nextInt();
+    while(month > 12 || month < 1) {
+			System.out.println("\nError!! Please enter the correct month:");
+			month = sc.nextInt();
+		}
+    return month;
+}
+
+public static int Day(){
+    Scanner sc = new Scanner(System.in);
+    int date;
+    System.out.println("\nEnter the day of the month:");
+    date = sc.nextInt();
+    while(date < 1 || date > 31) {
+			System.out.println("\nError!! Please enter the correct Date");
+			date = sc.nextInt();
+		}
+            return date;
 
 
+}
 
-
-
-
-
-
-	
+public static double Time(){
+    double time;
+    Scanner sc= new Scanner(System.in);
+    System.out.println("\nEnter time of travel; using 24 hour clock. i.e. 9.00 for 9am, 13.30 for 1.30pm");
+		time = sc.nextDouble();
+    while(time <= 0 || time >=24) {
+			System.out.println("\nError!! Please enter the correct Time");
+			time = sc.nextDouble();
+    }
+                return time;
+}
+}
