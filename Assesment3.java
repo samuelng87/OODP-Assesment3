@@ -18,14 +18,14 @@ public class Assesment3 {
 
 	// Main logic.
 	public static void main(String[] args) {
-		welcomeMessage();
+		displayWelcomeMessage();
 		printStars();
 		int option = printMenu();
 		handleMenu(option);
 	}
 
 	// Display the welcome message.
-	public static void welcomeMessage() {
+	public static void displayWelcomeMessage() {
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
 		Date date = java.util.Calendar.getInstance().getTime();
@@ -47,7 +47,7 @@ public class Assesment3 {
 	}
 
 	// Enter distance.
-	public static int kiloMeters() {
+	public static int enterKiloMeters() {
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
 
@@ -59,7 +59,7 @@ public class Assesment3 {
 	}
 
 	// Enter month.
-	public static int travelMonth() {
+	public static int enterTravelMonth() {
 		// Declaration and initialising.
 		int month = 0;
 		Scanner sc = new Scanner(System.in);
@@ -80,7 +80,7 @@ public class Assesment3 {
 	}
 
 	// Enter travel date.
-	public static int traveldate(int month) {
+	public static int enterTravelDate(int month) {
 		// Declaration and initialising.
 		int maxDateOfMonth = 0;
 		int date = 0;
@@ -108,7 +108,7 @@ public class Assesment3 {
 	}
 
 	// Enter time in 24 hour "peak"&"normal" season.
-	public static double travelTime() {
+	public static double enterTravelTime() {
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
 		double time = 0.0;
@@ -236,7 +236,7 @@ public class Assesment3 {
 	}
 
 	// result
-	public static double handleMenu(int userOption) {
+	public static void handleMenu(int userOption) {
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
 
@@ -244,10 +244,10 @@ public class Assesment3 {
 		case 1: {
 			System.out.println("Please Enter Your Name");
 			name = sc.nextLine();
-			double kms = kiloMeters();
-			int month = travelMonth();
-			int date = traveldate(month);
-			double time = travelTime();
+			double kms = enterKiloMeters();
+			int month = enterTravelMonth();
+			int date = enterTravelDate(month);
+			double time = enterTravelTime();
 			printMenu();
 		}
 
