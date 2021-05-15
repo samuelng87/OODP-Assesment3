@@ -121,7 +121,7 @@ public class Assesment3 {
 		// Check user entered date is valid or invalid.
 		// If the date is invalid, prompt the user to enter again until entering valid
 		// time.
-		while (time < 1.00 || time > 23.59) {
+		while (time < 0.00 || time > 23.59) {
 			System.out.println("Error! ::::::::: Please time using 24 hour clock notation");
 			time = sc.nextDouble();
 		}
