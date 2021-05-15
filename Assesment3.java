@@ -58,7 +58,7 @@ public class Assesment3 {
 		return kms;
 	}
 
-	// Enter month.
+	// Enter travel month.
 	public static int enterTravelMonth() {
 		// Declaration and initialising.
 		int month = 0;
@@ -107,7 +107,7 @@ public class Assesment3 {
 		return date;
 	}
 
-	// Enter time in 24 hour "peak"&"normal" season.
+	// Enter travel time in 24 hour "peak"&"normal" season.
 	public static double enterTravelTime() {
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
