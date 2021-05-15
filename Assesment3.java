@@ -16,6 +16,7 @@ public class Assesment3 {
 	public static final int year = 2021;
 	static String name; // added string name for Hello and Goodbye
 
+	// Main logic.
 	public static void main(String[] args) {
 		welcomeMessage();
 		printStars();
@@ -23,19 +24,21 @@ public class Assesment3 {
 		handleMenu(option);
 	}
 
-	// enter the name before the welcome message
+	// Display the welcome message.
 	public static void welcomeMessage() {
+		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
 		Date date = java.util.Calendar.getInstance().getTime();
-		printStars();
 
+		// Display the welcome message.
+		printStars();
 		System.out.println("WELCOME TO RIDE-SHARING CHARGES ESTIMATOR AND COMPARISON SYSTEM\n");
 		System.out.println("Developed by Koki, Ashmit, Saroj and Samuel Student IDs K200885 K210080 K210095 K210032");
 		System.out.println("OODP101 Object Oriented Design and Programming");
 		System.out.println(date + "\n");
 	}
 
-	// printing star line
+	// Printing star line.
 	public static void printStars() {
 		for (int i = 0; i < 100; i++) {
 			System.out.print("*");
@@ -43,21 +46,31 @@ public class Assesment3 {
 		System.out.print("\n");
 	}
 
-	// enter distance
+	// Enter distance.
 	public static int kiloMeters() {
+		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
+
+		// Enter killometers by user.
 		System.out.println("Enter the travel distance in kilometers(KM) :");
 		int kms = sc.nextInt();
+
 		return kms;
 	}
 
-	// enter month
+	// Enter month.
 	public static int travelMonth() {
+		// Declaration and initialising.
 		int month = 0;
 		Scanner sc = new Scanner(System.in);
+
+		// Enter month by user first time.
 		System.out.println("Month of travel in numbers, January > 1 and June > 6");
 		month = sc.nextInt();
 
+		// Check user entered month is valid or invalid.
+		// If the date is invalid, prompt the user to enter again until entering valid
+		// month.
 		while (month < 1 || month > 12) {
 			System.out.println("Error!! Please enter the correct Month");
 			month = sc.nextInt();
@@ -66,7 +79,7 @@ public class Assesment3 {
 		return month;
 	}
 
-	// enter date
+	// Enter travel date.
 	public static int traveldate(int month) {
 		// Declaration and initialising.
 		int maxDateOfMonth = 0;
@@ -94,14 +107,20 @@ public class Assesment3 {
 		return date;
 	}
 
-	// enter time in 24 hour "peak"&"normal" season
+	// Enter time in 24 hour "peak"&"normal" season.
 	public static double travelTime() {
+		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
-		double time;
+		double time = 0.0;
+
+		// Enter travel time by user first time.
 		System.out.println(
 				"Now enter the time in 24 hour clock notation (7am for 7.00, 1pm for 13.00 or 9pm for 21.00) ");
 		time = sc.nextDouble();
 
+		// Check user entered date is valid or invalid.
+		// If the date is invalid, prompt the user to enter again until entering valid
+		// time.
 		while (time < 1.00 || time > 23.59) {
 			System.out.println("Error! ::::::::: Please time using 24 hour clock notation");
 			time = sc.nextDouble();
@@ -110,8 +129,7 @@ public class Assesment3 {
 		return time;
 	}
 
-	// calculate charges
-	// calculate charges
+	// Calculate charges.
 	public static double calculateCharges(double kilometers, int month, int date, double time, int companyNumber) {
 		// Declaration and initialising.
 		// The data order is first one is company 1, next one is company 2...
@@ -128,7 +146,6 @@ public class Assesment3 {
 		if (isPeakTime(time)) {
 			peaktimeSurcharges = peaktimeSurchargesList[useChargesIndex];
 		}
-
 		if (isWeekend(month, date)) {
 			weekendSurcharges = weekendSurchargesList[useChargesIndex];
 		}
@@ -136,9 +153,9 @@ public class Assesment3 {
 		// Calculate and return total charges.
 		return baseChargesList[useChargesIndex] + distanceChargesList[useChargesIndex] + peaktimeSurcharges
 				+ weekendSurcharges;
-
 	}
 
+	// Display travel details.
 	public static void displayTravelDetails(String companyName, double charges, int month, int date, double time) {
 		// Declaration and initialising.
 		String dayOfWeekString = getDayOfWeekString(month, date);
@@ -174,6 +191,7 @@ public class Assesment3 {
 
 	// Check if day of week by month and date is weekend.
 	public static boolean isWeekend(int month, int date) {
+		// Declaration and initialising.
 		int dayOfWeek = LocalDate.of(year, month, date).getDayOfWeek().getValue();
 
 		return dayOfWeek == DayOfWeek.SATURDAY.getValue() || dayOfWeek == DayOfWeek.SUNDAY.getValue();
@@ -190,9 +208,12 @@ public class Assesment3 {
 		return new DateFormatSymbols().getMonths()[month - 1].toUpperCase();
 	}
 
-	// Menu
+	// Print menu.
 	public static int printMenu() {
-		int userSelection;
+		// Declaration and initialising.
+		int userSelection = 0;
+
+		// Printing the menu.
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the following details as stated below by using numbers:\n");
 		System.out.println("1. Enter User Details");
@@ -203,6 +224,9 @@ public class Assesment3 {
 		System.out.println("6. Exit");
 		userSelection = sc.nextInt();
 
+		// Check user entered option is valid or invalid.
+		// If the option is invalid, prompt the user to enter again until entering valid
+		// option.
 		while (userSelection < 1 || userSelection > 6) {
 			System.out.println("Error! ::::::::: Please Enter number 1 to 6 only");
 			printMenu();
@@ -213,9 +237,8 @@ public class Assesment3 {
 
 	// result
 	public static double handleMenu(int userOption) {
+		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
-
-		double charges1 = 0;
 
 		switch (userOption) {
 		case 1: {
@@ -226,11 +249,9 @@ public class Assesment3 {
 			int date = traveldate(month);
 			double time = travelTime();
 			printMenu();
-
 		}
 
 		case 2: {
-
 			// call the charges from calculateCharges() baseChargesList = {5.50}
 			// distanceChargesList = {0.75} peak & normal
 
@@ -248,7 +269,6 @@ public class Assesment3 {
 		}
 
 		case 4: {
-
 			// call the charges from calculateCharges() baseChargesList = {6.50}
 			// distanceChargesList = {0.95} peak & normal
 			// final double charges = calculateCharges(kms, month, date, time, date);
@@ -260,13 +280,10 @@ public class Assesment3 {
 			// creating a report list from case 2 to 4 prices from min to max
 		}
 		case 6: {
-
 			System.out.println("Thank you " + name + ", for using our system and good bye>>>>>> ");
 			break;
 		}
 
 		}
-
-		return charges1;
 	}
 }
