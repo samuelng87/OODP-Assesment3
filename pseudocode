@@ -13,25 +13,72 @@ Declaration
 
 // Main Logic.
 Start
- perform printStars()
- 
- // Welcome message
- print(space line x3
-    Welcome Message 
-	space line x2) 
+  Declaration
+    num userSelection
+    string name
+    num kms
+    num month
+    num date
+    num time
+    num array chargesList
+    string array companyNameList
+    string haveNotEnteredUsageDetailsMessage
 
- perform printStars()
+  // Initialising.
+  name = empty string
+  kms = 0.0
+  month = 0.0
+  date = 0.0
+  time = 0.0
+  chargesList = array(0.0, 0.0, 0.0)
+  companyNameList = array("company1", "company2", "company3")
+  haveNotEnteredUsageDetailsMessage = "Please enter usage details first!!!"
 
- // Developer details, assessment name & date 
- print(space line x2 
-  Developed by, Names & Student IDs
-	Space line x1 
-	 Assessment name 
-	  Space line x1
-	   date 
-	    space line x3)
+  perform displayWelcomeMessage()
+  perform printMenu()
+  userSelection = perform enterMenuOption()
+  while userSelection is not 6
+    case userSelection
+      case 1
+        name perform enterName()
+        kms = perform enterKiloMeters()
+        month = perform enterTravelMonth()
+        date = perform enterTravelDate(month)
+        time = enterTravelTime()
+        chargesList[0] = perform calculateCharges(kms, month, date, time, 1)
+        chargesList[1] = perform calculateCharges(kms, month, date, time, 2)
+        chargesList[2] = perform calculateCharges(kms, month, date, time, 3)
+      case 2
+        if name == "" then
+          print(haveNotEnteredUsageDetailsMessage)
+        else
+          perform displayTravelDetails("company1", chargesList[0], month, date, time)
+        endif
+      case 3
+        if name == "" then
+          print(haveNotEnteredUsageDetailsMessage)
+        else
+          perform displayTravelDetails("company2", chargesList[1], month, date, time)
+        endif
+      case 4
+        if name == "" then
+          print(haveNotEnteredUsageDetailsMessage)
+        else
+          perform displayTravelDetails("company3", chargesList[2], month, date, time)
+        endif
+      case 5
+        perform displayMostExpensiveAndCheapestCompanyInfo(chargesList, companyNameList)
+    end case
 
- perform printStars()
+    perform printMenu()
+    userSelection = perform enterMenuOption()
+  endwhile
+
+  if name == "" then
+    print("Thank you for using our system and good bye>>>>>> ")
+  else
+    print("Thank you " + name + " for using our system and good bye>>>>>> ")
+  endif
 Stop
 
 // Display the welcome message.
@@ -54,6 +101,17 @@ printStars()
  loop from 0 to 100 
   print(*)
    end loop
+
+// Enter name.
+enterName()
+  Declaration
+    string name
+
+  // Enter name.
+  print("Enter your name")
+  input name
+
+  return name
 
 // Enter distance.
 enterKiloMeters()
@@ -213,9 +271,6 @@ getMonthString(int month)
 
 // Print menu.
 printMenu()
-  Declaration
-    num userSelection
-
   // Printing the menu.
   print("Please enter the following details as stated below by using numbers:")
   print("1. Enter User Details")
@@ -225,6 +280,11 @@ printMenu()
   print("5. Show Report")
   print("6. Exit")
 
+enterMenuOption()
+  Declaration
+    num userSelection
+
+  perform printMenu()
   input userSelection
 
   // Check user entered option is valid or invalid.
@@ -235,7 +295,26 @@ printMenu()
 
   return userSelection
 
-// result
-// TODO: must writing this function
-handleMenu(num userOption)
+displayMostExpensiveAndCheapestCompanyInfo(num array chargesList, string array companyNameList)
+  Declaration
+    num cheapestInfoIndex
+    num mostExpensiveInfoIndex
 
+  // Initialising.
+  cheapestInfoIndex = 0
+  mostExpensiveInfoIndex = 0
+
+  // Get most expensive and cheapest company information.
+  while referes each charges in chargesList
+    if charges < chargesList[cheapestInfoIndex] then
+      cheapestInfoIndex = index of charges
+    endif
+    if chargesList[mostExpensiveInfoIndex] < charges then
+      mostExpensiveInfoIndex = index of charges
+    endif
+
+  // Display the most expensive and cheapest company information.
+  perform printStars()
+  print("The cheapest company is " + companyNameList[cheapestInfoIndex])
+  print("The most expensive company is " + companyNameList[mostExpensiveInfoIndex])
+  perform printStars()
