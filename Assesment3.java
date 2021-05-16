@@ -15,12 +15,12 @@ public class Assesment3 {
 	// not and We will use 2021 as a default year.
 	public static final int year = 2021;
 	static String name; // added string name for Hello and Goodbye
-
 	// Main logic.
 	public static void main(String[] args) {
 		displayWelcomeMessage();
 		printStars();
 		int option = printMenu();
+		System.out.println("You have selected option number: "+option+"\n");
 		handleMenu(option);
 	}
 
@@ -48,12 +48,19 @@ public class Assesment3 {
 
 	// Enter distance.
 	public static int enterKiloMeters() {
+		int kms;
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
 
 		// Enter killometers by user.
 		System.out.println("Enter the travel distance in kilometers(KM) :");
-		int kms = sc.nextInt();
+		kms = sc.nextInt();
+		
+		
+		while (kms < 1) {
+			System.out.println("Error!! Please enter the number more than 0KM :");
+			kms = sc.nextInt();
+		}
 
 		return kms;
 	}
@@ -65,7 +72,7 @@ public class Assesment3 {
 		Scanner sc = new Scanner(System.in);
 
 		// Enter month by user first time.
-		System.out.println("Month of travel in numbers, January > 1 and June > 6");
+		System.out.println("Month of travel in numbers, January is 1 and June is 6");
 		month = sc.nextInt();
 
 		// Check user entered month is valid or invalid.
@@ -128,7 +135,75 @@ public class Assesment3 {
 
 		return time;
 	}
+	
+	
+	public static double calculateCharges(double kilometers, int month, int date, double time) {
+		// Declaration and initialising.
+		final double baseCharges = 5.50;
+		final double distanceCharges = kilometers * 0.75;
+		double peaktimeSurcharges = 0.0;
+		double weekendSurcharges = 0.0;
 
+		// Initialising.
+		if (isPeakTime(time)) {
+			peaktimeSurcharges = 2.50;
+		}
+
+		if (isWeekend(month, date)) {
+			weekendSurcharges = 3.00;
+		}
+
+		// Calculate and return total charges.
+		return baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges;
+	}
+
+	
+
+
+	
+	public static double calculateCharges1(double kilometers, int month, int date, double time) {
+		// Declaration and initialising.
+		final double baseCharges = 4.50;
+		final double distanceCharges = kilometers * 0.85;
+		double peaktimeSurcharges = 0.0;
+		double weekendSurcharges = 0.0;
+
+		// Initialising.
+		if (isPeakTime(time)) {
+			peaktimeSurcharges = 2.00;
+		}
+
+		if (isWeekend(month, date)) {
+			weekendSurcharges = 2.50;
+		}
+
+		// Calculate and return total charges.
+		return baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges;
+	}
+	
+	
+	public static double calculateCharges2(double kilometers, int month, int date, double time) {
+		// Declaration and initialising.
+		final double baseCharges = 6.00;
+		final double distanceCharges = kilometers * 0.95;
+		double peaktimeSurcharges = 0.0;
+		double weekendSurcharges = 0.0;
+
+		// Initialising.
+		if (isPeakTime(time)) {
+			peaktimeSurcharges = 1.50;
+		}
+
+		if (isWeekend(month, date)) {
+			weekendSurcharges = 2.00;
+		}
+
+		// Calculate and return total charges.
+		return baseCharges + distanceCharges + peaktimeSurcharges + weekendSurcharges;
+	}
+	
+	
+/*****
 	// Calculate charges.
 	public static double calculateCharges(double kilometers, int month, int date, double time, int companyNumber) {
 		// Declaration and initialising.
@@ -154,7 +229,14 @@ public class Assesment3 {
 		return baseChargesList[useChargesIndex] + distanceChargesList[useChargesIndex] + peaktimeSurcharges
 				+ weekendSurcharges;
 	}
-
+*****/
+	
+	
+	
+	
+	
+	
+	
 	// Display travel details.
 	public static void displayTravelDetails(String companyName, double charges, int month, int date, double time) {
 		// Declaration and initialising.
@@ -211,9 +293,10 @@ public class Assesment3 {
 	// Print menu.
 	public static int printMenu() {
 		// Declaration and initialising.
-		int userSelection = 0;
+		int userSelection;
 
 		// Printing the menu.
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter the following details as stated below by using numbers:\n");
 		System.out.println("1. Enter User Details");
@@ -229,7 +312,14 @@ public class Assesment3 {
 		// option.
 		while (userSelection < 1 || userSelection > 6) {
 			System.out.println("Error! ::::::::: Please Enter number 1 to 6 only");
-			printMenu();
+			System.out.println("1. Enter User Details");
+			System.out.println("2. Display charges under UBER");
+			System.out.println("3. Display charges under DIDI");
+			System.out.println("4. Display Charges under OLA");
+			System.out.println("5. Show Report");
+			System.out.println("6. Exit");
+			userSelection = sc.nextInt();
+			
 		}
 
 		return userSelection;
@@ -239,51 +329,95 @@ public class Assesment3 {
 	public static void handleMenu(int userOption) {
 		// Declaration and initialising.
 		Scanner sc = new Scanner(System.in);
-
+		int selection = 0;
+		System.out.println("Please Enter Your Name");
+		name = sc.nextLine();
+		double kms = enterKiloMeters();
+		int month = enterTravelMonth();
+		int date = enterTravelDate(month);
+		double time = enterTravelTime();
+		
 		switch (userOption) {
 		case 1: {
-			System.out.println("Please Enter Your Name");
-			name = sc.nextLine();
-			double kms = enterKiloMeters();
-			int month = enterTravelMonth();
-			int date = enterTravelDate(month);
-			double time = enterTravelTime();
-			printMenu();
+			
+		//	System.out.println("Please Enter Your Name");
+			//name = sc.nextLine();
+		//	enterKiloMeters();
+		//	enterTravelMonth();
+		//	enterTravelDate(month);
+			//printMenu();
+		
 		}
-
+			break;
 		case 2: {
+			
+			final double charges = calculateCharges(kms, month, date, time);
+			displayTravelDetails("Uber Charges", charges, month, date, time);
+			printMenu();
+			break;
+
+			
+			//calculateCharges();
+			//displayTravelDetails("company 1", charges, month, date, time);
 			// call the charges from calculateCharges() baseChargesList = {5.50}
 			// distanceChargesList = {0.75} peak & normal
-
+		
 			// final double charges = calculateCharges(kms, month, date, time, date);
 			// displayTravelDetails("Your DIDI fare is", charges, month, date, time);
-			// break;
+			
 		}
 
 		case 3: {
+			final double charges = calculateCharges1(kms, month, date, time);
+			displayTravelDetails("DIDI Charges", charges, month, date, time);
+			printMenu();
+			break;
+
 			// call the charges from calculateCharges() baseChargesList = {4.50}
 			// distanceChargesList = {0.85} peak & normal
 			// final double charges = calculateCharges(kms, month, date, time, date);
 			// displayTravelDetails("Your DIDI fare is", charges, month, date, time);
-			// break;
+			
 		}
 
 		case 4: {
+			final double charges = calculateCharges2(kms, month, date, time);
+			displayTravelDetails("OLA Charges", charges, month, date, time);
+			printMenu();
+			break;
+
 			// call the charges from calculateCharges() baseChargesList = {6.50}
 			// distanceChargesList = {0.95} peak & normal
 			// final double charges = calculateCharges(kms, month, date, time, date);
 			// displayTravelDetails("Your DIDI fare is", charges, month, date, time);
-			// break;
+			
 		}
 
 		case 5: {
+		
 			// creating a report list from case 2 to 4 prices from min to max
+			final double charges = calculateCharges(kms, month, date, time);
+			displayTravelDetails("Uber Charges", charges, month, date, time);
+		
+			final double charges1 = calculateCharges1(kms, month, date, time);
+			displayTravelDetails("DIDI Charges", charges, month, date, time);
+		
+			final double charges2 = calculateCharges2(kms, month, date, time);
+			displayTravelDetails("OLA Charges", charges, month, date, time);
+			printMenu();
+
 		}
 		case 6: {
+			
 			System.out.println("Thank you " + name + ", for using our system and good bye>>>>>> ");
 			break;
-		}
+				
+			}
+			
+		
 
 		}
 	}
+	
 }
+
