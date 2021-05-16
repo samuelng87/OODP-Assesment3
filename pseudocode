@@ -292,6 +292,7 @@ enterMenuOption()
 
   return userSelection
 
+// Display most expensive and the cheapest company information.
 displayMostExpensiveAndCheapestCompanyInfo(num array chargesList, string array companyNameList)
   Declaration
     num cheapestInfoIndex
