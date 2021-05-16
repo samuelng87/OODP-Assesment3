@@ -216,6 +216,7 @@ public class Assesment3 {
 		double weekendSurcharges = 0.0;
 		int useChargesIndex = companyNumber - 1; // setting use data index because company number does not start from
 													// zero.
+
 		// Initialising.
 		if (isPeakTime(time)) {
 			peaktimeSurcharges = peaktimeSurchargesList[useChargesIndex];
@@ -223,6 +224,7 @@ public class Assesment3 {
 		if (isWeekend(month, date)) {
 			weekendSurcharges = weekendSurchargesList[useChargesIndex];
 		}
+
 		// Calculate and return total charges.
 		return baseChargesList[useChargesIndex] + distanceChargesList[useChargesIndex] + peaktimeSurcharges
 				+ weekendSurcharges;
@@ -334,7 +336,7 @@ public class Assesment3 {
 		int month = enterTravelMonth();
 		int date = enterTravelDate(month);
 		double time = enterTravelTime();
-		printMenu();
+		
 		switch (userOption) {
 		case 1: {
 			
@@ -418,3 +420,4 @@ public class Assesment3 {
 	}
 	
 }
+
