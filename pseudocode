@@ -1,15 +1,12 @@
 // Declaration for whole program.
 Declaration
   num year
-  string name
 
-	// Year to use calculating is fixed at 2021 because of the below note.
-	// Note: We will use these to find out if it is falling in weekend category or
-	// not and We will use 2021 as a default year.
-  year = 2021
-
-  // Added string name for Hello and Goodbye
-  name = empty string
+// Initialising for whole program.
+// Year to use calculating is fixed at 2021 because of the below note.
+// Note: We will use these to find out if it is falling in weekend category or
+// not and We will use 2021 as a default year.
+year = 2021
 
 // Main Logic.
 Start
@@ -40,7 +37,7 @@ Start
   while userSelection is not 6
     case userSelection
       case 1
-        name perform enterName()
+        name = perform enterName()
         kms = perform enterKiloMeters()
         month = perform enterTravelMonth()
         date = perform enterTravelDate(month)
