@@ -301,7 +301,7 @@ displayMostExpensiveAndCheapestCompanyInfo(num array chargesList, string array c
   cheapestInfoIndex = 0
   mostExpensiveInfoIndex = 0
 
-  // Get most expensive and cheapest company information.
+  // Get most expensive and the cheapest company information.
   while referes each charges in chargesList
     if charges < chargesList[cheapestInfoIndex] then
       cheapestInfoIndex = index of charges
@@ -309,6 +309,7 @@ displayMostExpensiveAndCheapestCompanyInfo(num array chargesList, string array c
     if chargesList[mostExpensiveInfoIndex] < charges then
       mostExpensiveInfoIndex = index of charges
     endif
+  endwhile
 
   // Display the most expensive and cheapest company information.
   perform printStars()
