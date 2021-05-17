@@ -22,14 +22,15 @@ Start
     string haveNotEnteredUsageDetailsMessage
 
   // Initialising.
+  userSelection = 0
   name = empty string
   kms = 0.0
   month = 0.0
   date = 0.0
   time = 0.0
   chargesList = array(0.0, 0.0, 0.0)
-  companyNameList = array("company1", "company2", "company3")
-  haveNotEnteredUsageDetailsMessage = "Please enter usage details first!!!"
+  companyNameList = array("UBER", "DIDI", "OLA")
+  haveNotEnteredUsageDetailsMessage = "Please enter usage details first!!!\n"
 
   perform displayWelcomeMessage()
   perform printMenu()
@@ -119,6 +120,13 @@ enterKiloMeters()
   print("Enter the travel distance in kilometers(KM) :")
   input kms
 
+  // Check user entered killometers is valid or invalid.
+  // If the killometers is invalid, prompt the user to enter again until entering valid killometers.
+  while if kms is less than 1
+    print("Error!! Please enter the number more than 0KM :")
+    input kms
+  endwhile
+
   return kms
 
 // Enter travel month.
@@ -135,6 +143,7 @@ enterTravelMonth()
   while month is invalid (the month is not between 1 and 12)
     print("Error!! Please enter the correct Month")
     input month
+  endwhile
 
   return month
 
@@ -156,6 +165,7 @@ enterTravelDate(num month)
   while date is invalid (the date is not between 1 and maxDateOfMonth)
     print("Error!! Please enter the correct Date")
     input date
+  endwhile
 
   return date
 
@@ -173,6 +183,7 @@ enterTravelTime()
   while time is invalid (the time is not between 0.00 and 23.59)
     print("Error! ::::::::: Please time using 24 hour clock notation")
     input time
+  endwhile
 
   return time
 
@@ -287,7 +298,7 @@ enterMenuOption()
   // Check user entered option is valid or invalid.
   // If the option is invalid, prompt the user to enter again until entering valid option.
   while userSelection is invalid (the userSelection is not between 1 and 6)
-    print("Error! ::::::::: Please Enter number 1 to 6 only")
+    print("Error! ::::::::: Please Enter number 1 to 6 only\n")
     perform printMenu()
 
   return userSelection
@@ -295,19 +306,25 @@ enterMenuOption()
 // Display most expensive and the cheapest company information.
 displayMostExpensiveAndCheapestCompanyInfo(num array chargesList, string array companyNameList)
   Declaration
+    num cheapestCharges
+    num mostExpensiveCharges
     num cheapestInfoIndex
     num mostExpensiveInfoIndex
 
   // Initialising.
+  cheapestCharges = 0.0
+  mostExpensiveCharges = 0.0
   cheapestInfoIndex = 0
   mostExpensiveInfoIndex = 0
 
   // Get most expensive and the cheapest company information.
   while referes each charges in chargesList
-    if charges < chargesList[cheapestInfoIndex] then
+    if charges <= cheapestCharges or cheapestCharges == 0.0 then
+      cheapestCharges = charges
       cheapestInfoIndex = index of charges
     endif
-    if chargesList[mostExpensiveInfoIndex] < charges then
+    if mostExpensiveCharges <= charges or mostExpensiveCharges == 0.0 then
+      mostExpensiveCharges = charges
       mostExpensiveInfoIndex = index of charges
     endif
   endwhile
